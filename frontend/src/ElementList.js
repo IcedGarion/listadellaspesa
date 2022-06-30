@@ -30,6 +30,24 @@ class ElementList extends Component {
         });
     }
 
+    async editText(elementId, attributeName, newAttributeValue) {
+        let updatedElement = this.state.lista.filter(e => e.id === elementId)[0];
+        updatedElement[attributeName] = newAttributeValue;
+        let updatedLista = this.state.lista.filter(e => e.id !== elementId);
+        updatedLista.push(updatedElement);
+
+        this.setState({lista: updatedLista});
+
+        await fetch("/lista", {
+            method: 'PATCH',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedElement),
+        });
+    }
+
     render() {
         const {lista, isLoading} = this.state;
 
@@ -37,17 +55,18 @@ class ElementList extends Component {
             return <p>Loading...</p>;
         }
 
-        const listaList = lista.map(element => {
+        const listaList = lista.sort((a, b) => a.nome > b.nome ? 1 : -1)
+            .map(element => {
             return <tr key={element.id}>
-                <td style={{whiteSpace: 'nowrap'}}>{element.nome}</td>
-                <td>{element.dove}</td>
-                <td>{element.categoria}</td>
-                <td>{element.note}</td>
+                <td><div contentEditable="true" onBlur={ e => this.editText(element.id, "nome", e.currentTarget.textContent) }>{element.nome}</div></td>
+                <td><div contentEditable="true" onBlur={ e => this.editText(element.id, "dove", e.currentTarget.textContent) }>{element.dove}</div></td>
+                <td><div contentEditable="true" onBlur={ e => this.editText(element.id, "categoria", e.currentTarget.textContent) }>{element.categoria}</div></td>
+                <td><div contentEditable="true" onBlur={ e => this.editText(element.id, "note", e.currentTarget.textContent) }>{element.note}</div></td>
                 <td>{element.disponibile.toString()}</td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="primary" tag={Link} to={"/lista/" + element.id} >Edit</Button>
-                        <Button size="sm" color="danger" onClick={() => this.remove(element.id)}>Delete</Button>
+                        {/*<Button size="sm" color="primary" tag={Link} to={"/lista/" + element.id} >Edit</Button>*/}
+                        <Button size="sm" color="danger" onClick={() => this.remove(element.id)}>-</Button>
                     </ButtonGroup>
                 </td>
             </tr>
@@ -57,25 +76,25 @@ class ElementList extends Component {
             <div>
                 <AppNavbar/>
                 <Container fluid>
-                    <div className="float-right">
-                        <Button color="success" tag={Link} to="/lista/new">Add Element</Button>
-                    </div>
                     <h3>Lista</h3>
                     <Table className="mt-4">
                         <thead>
                         <tr>
-                            <th width="15%">Nome</th>
-                            <th width="15%">Dove</th>
-                            <th width="15%">Categoria</th>
-                            <th width="15%">Note</th>
-                            <th width="15%">Disponibile</th>
-                            <th width="25%">Actions</th>
+                            <th width="19%">Nome</th>
+                            <th width="19%">Dove</th>
+                            <th width="19%">Categoria</th>
+                            <th width="19%">Note</th>
+                            <th width="19%">Disponibile</th>
+                            <th width="5%"></th>
                         </tr>
                         </thead>
                         <tbody>
                         {listaList}
                         </tbody>
                     </Table>
+                    <div className="float-right">
+                        <Button color="success" tag={Link} to="/lista/new">+</Button>
+                    </div>
                 </Container>
             </div>
         );
