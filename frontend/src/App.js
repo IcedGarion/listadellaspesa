@@ -1,35 +1,21 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
-import {Component} from "react";
+import Home from './Home';
+import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
+import ElementList from './ElementList';
+import ElementEdit from "./ElementEdit";
 
 class App extends Component {
-  state = {
-    lista: []
-  };
-
-  async componentDidMount() {
-    const response = await fetch('/api/getList');
-    const body = await response.json();
-    this.setState({lista: body});
-  }
-
   render() {
-    const {lista} = this.state;
-    return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <div className="App-intro">
-              <h2>Lista</h2>
-              {lista.map(element =>
-                  <div key={element.id}>
-                    {element.nome} ({element.disponibile})
-                  </div>
-              )}
-            </div>
-          </header>
-        </div>
-    );
+      return (
+          <Router forceRefresh={true}>
+              <Switch>
+                  <Route exact path='/' component={Home} target={Home}/>
+                  <Route exact path='/lista' component={ElementList}/>
+                  <Route exact path='/lista/:id' component={ElementEdit}/>
+              </Switch>
+          </Router>
+      )
   }
 }
 

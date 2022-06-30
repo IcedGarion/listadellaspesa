@@ -22,6 +22,11 @@ public class ListaService {
     @Autowired
     private ListaEntryRequestToBeanConverter listaEntryRequestToBeanConverter;
 
+    public Optional<ListaEntryBean> getEntry(Long listaEntryId) {
+        return dao.findById(listaEntryId)
+                .map(listaEntryEntityToBeanConverter::convert);
+    }
+
     public List<ListaEntryBean> getAllEntries() {
         return dao.findAll()
                 .stream().map(listaEntryEntityToBeanConverter::convert)
@@ -33,15 +38,6 @@ public class ListaService {
                 .map(listaEntryRequestToBeanConverter::convert)
                 .map(dao::save)
                 .map(listaEntryEntityToBeanConverter::convert);
-    }
-
-    public List<ListaEntryBean> updateAllEntries(List<ListaEntryUpdateRequestBean> existingLista) {
-        return existingLista.stream()
-                .map(listaEntryRequestToBeanConverter::convert)
-                .map(dao::updateEntry)
-                .flatMap(Optional::stream)
-                .map(listaEntryEntityToBeanConverter::convert)
-                .collect(Collectors.toList());
     }
 
     public Optional<ListaEntryBean> updateEntry(ListaEntryUpdateRequestBean existingListaEntry) {
