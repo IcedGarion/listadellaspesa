@@ -26,10 +26,10 @@ public class ListaDao {
     public Optional<ListaEntryEntity> updateEntry(ListaEntryBean listaEntryBean) {
         return repository.findById(listaEntryBean.getId())
                 .map(existingListaEntryEntity -> existingListaEntryEntity.setNome(listaEntryBean.getNome()))
-                .map(existingListaEntryEntity -> existingListaEntryEntity.setCategoria(listaEntryBean.getCategoria()))
                 .map(existingListaEntryEntity -> existingListaEntryEntity.setDove(listaEntryBean.getDove()))
-                .map(existingListaEntryEntity -> existingListaEntryEntity.setNote(listaEntryBean.getNote()))
                 .map(existingListaEntryEntity -> existingListaEntryEntity.setCategoria(listaEntryBean.getCategoria()))
+                .map(existingListaEntryEntity -> existingListaEntryEntity.setNote(listaEntryBean.getNote()))
+                .map(existingListaEntryEntity -> existingListaEntryEntity.setDisponibile(listaEntryBean.isDisponibile()))
                 .map(repository::save);
     }
 
