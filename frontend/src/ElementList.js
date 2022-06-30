@@ -43,7 +43,7 @@ class ElementList extends Component {
                 <td>{element.dove}</td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="primary" tag={Link} to={"/lista/" + element.id} target={"/lista/" + element.id}>Edit</Button>
+                        <Button size="sm" color="primary" tag={Link} to={"/lista/" + element.id} >Edit</Button>
                         <Button size="sm" color="danger" onClick={() => this.remove(element.id)}>Delete</Button>
                     </ButtonGroup>
                 </td>
@@ -55,7 +55,7 @@ class ElementList extends Component {
                 <AppNavbar/>
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/lista/new" target="/lista/new">Add Element</Button>
+                        <Button color="success" tag={Link} to="/lista/new">Add Element</Button>
                     </div>
                     <h3>Clients</h3>
                     <Table className="mt-4">
