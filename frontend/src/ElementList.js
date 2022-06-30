@@ -46,6 +46,8 @@ class ElementList extends Component {
             },
             body: JSON.stringify(updatedElement),
         });
+
+        console.log(JSON.stringify(updatedElement));
     }
 
     render() {
@@ -62,13 +64,8 @@ class ElementList extends Component {
                 <td><div contentEditable="true" onBlur={ e => this.editText(element.id, "dove", e.currentTarget.textContent) }>{element.dove}</div></td>
                 <td><div contentEditable="true" onBlur={ e => this.editText(element.id, "categoria", e.currentTarget.textContent) }>{element.categoria}</div></td>
                 <td><div contentEditable="true" onBlur={ e => this.editText(element.id, "note", e.currentTarget.textContent) }>{element.note}</div></td>
-                <td>{element.disponibile.toString()}</td>
-                <td>
-                    <ButtonGroup>
-                        {/*<Button size="sm" color="primary" tag={Link} to={"/lista/" + element.id} >Edit</Button>*/}
-                        <Button size="sm" color="danger" onClick={() => this.remove(element.id)}>-</Button>
-                    </ButtonGroup>
-                </td>
+                <td><Button size="lg" color={element.disponibile === true ? "success" : "danger"} onClick={ e => this.editText(element.id, "disponibile", !element.disponibile)}></Button></td>
+                <td><Button size="sm" color="dark" onClick={() => this.remove(element.id)}>-</Button></td>
             </tr>
         });
 
@@ -93,7 +90,7 @@ class ElementList extends Component {
                         </tbody>
                     </Table>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/lista/new">+</Button>
+                        <Button color="primary" tag={Link} to="/lista/new">+</Button>
                     </div>
                 </Container>
             </div>
