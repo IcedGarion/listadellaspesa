@@ -14,5 +14,5 @@ public class ListaEntryCreateRequestBean {
 
     private String note;
 
-    private boolean disponibile = false;
+    private boolean disponibile;
 }

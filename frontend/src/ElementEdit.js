@@ -7,7 +7,10 @@ class ElementEdit extends Component {
 
     emptyItem = {
         nome: '',
-        dove: ''
+        dove: '',
+        categoria: '',
+        note: '',
+        disponibile: 'false'
     };
 
     constructor(props) {
@@ -30,6 +33,7 @@ class ElementEdit extends Component {
         const target = event.target;
         const value = target.value;
         const name = target.name;
+
         let item = {...this.state.item};
         item[name] = value;
         this.setState({item});
@@ -66,9 +70,27 @@ class ElementEdit extends Component {
                                onChange={this.handleChange} autoComplete="nome"/>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="dove">Email</Label>
+                        <Label for="dove">Dove</Label>
                         <Input type="text" name="dove" id="dove" value={item.dove || ''}
                                onChange={this.handleChange} autoComplete="dove"/>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="categoria">Categoria</Label>
+                        <Input type="text" name="categoria" id="categoria" value={item.categoria || ''}
+                               onChange={this.handleChange} autoComplete="categoria"/>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="note">Note</Label>
+                        <Input type="text" name="note" id="note" value={item.note || ''}
+                               onChange={this.handleChange} autoComplete="note"/>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="disponibile">Disponibile</Label>
+                        <Input type="select" name="disponibile" id="disponibile" value={item.disponibile || ''}
+                                     onChange={this.handleChange} autoComplete="disponibile">
+                            <option value="false">false</option>
+                            <option value="true">true</option>
+                        </Input>
                     </FormGroup>
                     <FormGroup>
                         <Button color="primary" type="submit" >Save</Button>{' '}

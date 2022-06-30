@@ -16,5 +16,5 @@ public class ListaEntryUpdateRequestBean {
 
     private String note;
 
-    private boolean disponibile = false;
+    private boolean disponibile;
 }

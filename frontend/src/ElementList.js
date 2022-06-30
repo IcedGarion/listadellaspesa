@@ -41,6 +41,9 @@ class ElementList extends Component {
             return <tr key={element.id}>
                 <td style={{whiteSpace: 'nowrap'}}>{element.nome}</td>
                 <td>{element.dove}</td>
+                <td>{element.categoria}</td>
+                <td>{element.note}</td>
+                <td>{element.disponibile.toString()}</td>
                 <td>
                     <ButtonGroup>
                         <Button size="sm" color="primary" tag={Link} to={"/lista/" + element.id} >Edit</Button>
@@ -57,13 +60,16 @@ class ElementList extends Component {
                     <div className="float-right">
                         <Button color="success" tag={Link} to="/lista/new">Add Element</Button>
                     </div>
-                    <h3>Clients</h3>
+                    <h3>Lista</h3>
                     <Table className="mt-4">
                         <thead>
                         <tr>
-                            <th width="30%">Nome</th>
-                            <th width="30%">Dove</th>
-                            <th width="40%">Actions</th>
+                            <th width="15%">Nome</th>
+                            <th width="15%">Dove</th>
+                            <th width="15%">Categoria</th>
+                            <th width="15%">Note</th>
+                            <th width="15%">Disponibile</th>
+                            <th width="25%">Actions</th>
                         </tr>
                         </thead>
                         <tbody>

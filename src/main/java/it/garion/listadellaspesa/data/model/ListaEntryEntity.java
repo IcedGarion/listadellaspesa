@@ -23,7 +23,7 @@ public class ListaEntryEntity {
 
     private String note;
 
-    private boolean disponibile = false;
+    private boolean disponibile;
 
     public ListaEntryEntity(String nome, String dove, String categoria, String note, boolean disponibile) {
         this.nome = nome;
