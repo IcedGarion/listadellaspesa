@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Button, ButtonGroup, Container, Table } from 'reactstrap';
+import { Button, Container, Table } from 'reactstrap';
 import AppNavbar from './AppNavbar';
-import { Link } from 'react-router-dom';
 
 class ElementList extends Component {
 
@@ -46,8 +45,32 @@ class ElementList extends Component {
             },
             body: JSON.stringify(updatedElement),
         });
+    }
 
-        console.log(JSON.stringify(updatedElement));
+    addNew() {
+        const emptyItem = {
+            id: null,
+            nome: '',
+            dove: '',
+            categoria: '',
+            note: '',
+            disponibile: 'false'
+        };
+
+        fetch("/lista", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(emptyItem),
+        })
+            .then(response => response.json())
+            .then(newElement => {
+                let listaPlusOne = this.state.lista;
+                listaPlusOne.push(newElement);
+                this.setState({lista: listaPlusOne});
+            });
     }
 
     render() {
@@ -57,7 +80,10 @@ class ElementList extends Component {
             return <p>Loading...</p>;
         }
 
-        const listaList = lista.sort((a, b) => a.nome > b.nome ? 1 : -1)
+        const listaList = lista.sort((a, b) => {
+            if(a.nome === "") return 1;
+            return a.nome.toLowerCase() > b.nome.toLowerCase() ? 1 : -1
+        } )
             .map(element => {
             return <tr key={element.id}>
                 <td><div contentEditable="true" onBlur={ e => this.editText(element.id, "nome", e.currentTarget.textContent) }>{element.nome}</div></td>
@@ -90,7 +116,7 @@ class ElementList extends Component {
                         </tbody>
                     </Table>
                     <div className="float-right">
-                        <Button color="primary" tag={Link} to="/lista/new">+</Button>
+                        <Button color="primary" onClick={() => this.addNew()}>+</Button>
                     </div>
                 </Container>
             </div>
