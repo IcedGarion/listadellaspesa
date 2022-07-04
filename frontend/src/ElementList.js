@@ -90,25 +90,25 @@ class ElementList extends Component {
                 <td><div contentEditable="true" onBlur={ e => this.editText(element.id, "dove", e.currentTarget.textContent) }>{element.dove}</div></td>
                 <td><div contentEditable="true" onBlur={ e => this.editText(element.id, "categoria", e.currentTarget.textContent) }>{element.categoria}</div></td>
                 <td><div contentEditable="true" onBlur={ e => this.editText(element.id, "note", e.currentTarget.textContent) }>{element.note}</div></td>
-                <td><Button size="lg" color={element.disponibile === true ? "success" : "danger"} onClick={ e => this.editText(element.id, "disponibile", !element.disponibile)}></Button></td>
-                <td><Button size="sm" color="dark" onClick={() => this.remove(element.id)}>-</Button></td>
+                <td><div style={{display:"flex"}}><Button size="lg" style={{textAlign:"center",display:"block",margin:"auto", flex:"auto"}} color={element.disponibile === true ? "success" : "danger"} onClick={ e => this.editText(element.id, "disponibile", !element.disponibile)}></Button></div></td>
+                <td><Button size="sm" color="dark" style={{textAlign:"center",display:"block",margin:"auto", flex:"auto"}} onClick={() => this.remove(element.id)}>-</Button></td>
             </tr>
         });
 
         return (
-            <div>
+            <div style={{backgroundColor: '#111111'}}>
                 <AppNavbar/>
                 <Container fluid>
-                    <h3>Lista</h3>
-                    <Table className="mt-4">
+                    <h3 style={{color: '#f1f1f1'}}>Categoria tab</h3>
+                    <Table dark striped bordered responsive size="sm">
                         <thead>
                         <tr>
-                            <th width="19%">Nome</th>
-                            <th width="19%">Dove</th>
-                            <th width="19%">Categoria</th>
-                            <th width="19%">Note</th>
-                            <th width="19%">Disponibile</th>
-                            <th width="5%"></th>
+                            <th width="19%"><h5>Nome</h5></th>
+                            <th width="19%"><h5>Dove</h5></th>
+                            <th width="10%"><h5>Categoria</h5></th>
+                            <th width="19%"><h5>Note</h5></th>
+                            <th width="19%"><h5>Manca</h5></th>
+                            <th width="9%"></th>
                         </tr>
                         </thead>
                         <tbody>
