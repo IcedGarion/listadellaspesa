@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
-import { Button, Container, Table } from 'reactstrap';
+import React, {Component} from 'react';
+import {Button, Container, Nav, NavItem, NavLink, Table} from 'reactstrap';
+import classnames from 'classnames';
 import AppNavbar from './AppNavbar';
 
 class ElementList extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {lista: []};
+        // questo state in teoria andrebbe preso dalla tabella categorie
+        this.state = {lista: [], activeTab: 'cibo'};
         this.remove = this.remove.bind(this);
     }
 
@@ -52,7 +54,7 @@ class ElementList extends Component {
             id: null,
             nome: '',
             dove: '',
-            categoria: '',
+            categoria: this.state.activeTab,
             note: '',
             disponibile: 'false'
         };
@@ -73,6 +75,14 @@ class ElementList extends Component {
             });
     }
 
+    selectTab(tab) {
+        if (this.state.activeTab !== tab) {
+            this.setState({
+                activeTab: tab
+            });
+        }
+    }
+
     render() {
         const {lista, isLoading} = this.state;
 
@@ -80,7 +90,10 @@ class ElementList extends Component {
             return <p>Loading...</p>;
         }
 
-        const listaList = lista.sort((a, b) => {
+        const listaList = lista
+            // sto filter va sistemato una volta che ci sara' la tabella categorie
+            .filter(e => { if(this.state.activeTab === 'cibo') return e.categoria.toLowerCase() === 'cibo'; else return true })
+            .sort((a, b) => {
             if(a.nome === "") return 1;
             return a.nome.toLowerCase() > b.nome.toLowerCase() ? 1 : -1
         } )
@@ -99,7 +112,25 @@ class ElementList extends Component {
             <div style={{backgroundColor: '#111111'}}>
                 <AppNavbar/>
                 <Container fluid>
-                    <h3 style={{color: '#f1f1f1'}}>Categoria tab</h3>
+                    <div>
+                        <Nav tabs>
+                            <NavItem>
+                                <NavLink
+                                    className={classnames({ active: this.state.activeTab === 'cibo' })}
+                                    onClick={() => { this.selectTab('cibo'); }} >
+                                    <h3 style={{color: '#aaaaaa'}}>CIBO</h3>
+                                </NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink
+                                    className={classnames({ active: this.state.activeTab === 'altro' })}
+                                    onClick={() => { this.selectTab('altro'); }} >
+                                    <h3 style={{color: '#aaaaaa'}}>ALTRO</h3>
+                                </NavLink>
+                            </NavItem>
+                        </Nav>
+                    </div>
+
                     <Table dark striped bordered responsive size="sm">
                         <thead>
                         <tr>
