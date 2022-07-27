@@ -92,11 +92,21 @@ class ElementList extends Component {
 
         const listaList = lista
             // sto filter va sistemato una volta che ci sara' la tabella categorie
-            .filter(e => { if(this.state.activeTab === 'cibo') return e.categoria.toLowerCase() === 'cibo'; else return true })
+            .filter(e => {
+                if(this.state.activeTab === 'cibo')
+                    return e.categoria.toLowerCase() === 'cibo';
+                else
+                    return e.categoria.toLowerCase() !== 'cibo';
+            })
             .sort((a, b) => {
-            if(a.nome === "") return 1;
-            return a.nome.toLowerCase() > b.nome.toLowerCase() ? 1 : -1
-        } )
+                if(a.categoria.toLowerCase() === b.categoria.toLowerCase()) {
+                    if (a.nome === "") return 1;
+                    return a.nome.toLowerCase() > b.nome.toLowerCase() ? 1 : -1;
+                }
+                else {
+                    return a.categoria.toLowerCase() > b.categoria.toLowerCase() ? 1 : -1;
+                }
+            } )
             .map(element => {
             return <tr key={element.id}>
                 <td><div contentEditable="true" onBlur={ e => this.editText(element.id, "nome", e.currentTarget.textContent) }>{element.nome}</div></td>
