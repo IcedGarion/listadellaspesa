@@ -145,12 +145,12 @@ class ElementList extends Component {
                     <Table dark striped bordered responsive size="sm">
                         <thead>
                         <tr>
-                            <th width="19%"><h5>Nome</h5></th>
-                            <th width="19%"><h5>Dove</h5></th>
-                            <th hidden={this.state.activeTab === 'cibo'} width="10%"><h5>Tipo</h5></th>
-                            <th width="19%"><h5>Note</h5></th>
-                            <th width="19%"><h5>Manca</h5></th>
-                            <th width="9%"></th>
+                            <th width={this.state.activeTab === 'cibo' ? "29%" : "25%"}><h5>Nome</h5></th>
+                            <th width={this.state.activeTab === 'cibo' ? "24%" : "20%"}><h5>Dove</h5></th>
+                            <th hidden={this.state.activeTab === 'cibo'} width="14%"><h5>Tipo</h5></th>
+                            <th width={this.state.activeTab === 'cibo' ? "24%" : "21%"}><h5>Note</h5></th>
+                            <th width={this.state.activeTab === 'cibo' ? "14%" : "12%"}><h5>Manca</h5></th>
+                            <th width={this.state.activeTab === 'cibo' ? "9%" : "8%"}></th>
                         </tr>
                         </thead>
                         <tbody>

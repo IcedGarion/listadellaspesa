@@ -1,5 +1,6 @@
 html {
   background-color: black;
+  /* transform: scale(.5); */
 }
 
 body {
@@ -23,6 +24,10 @@ table{
 td{
   word-wrap:break-word;
   vertical-align: middle;
+}
+
+thead {
+  text-align: center;
 }
 
 .disponibile-button-container{
