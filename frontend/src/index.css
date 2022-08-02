@@ -19,6 +19,7 @@ code {
 
 table{
   table-layout: fixed;
+  font-family: monospace;
 }
 
 td{
@@ -28,6 +29,7 @@ td{
 
 thead {
   text-align: center;
+  font-family: Arial;
 }
 
 .disponibile-button-container{

@@ -129,14 +129,14 @@ class ElementList extends Component {
                                 <NavLink
                                     className={classnames({ active: this.state.activeTab === 'cibo' })}
                                     onClick={() => { this.selectTab('cibo'); }} >
-                                    <h3 style={{color: '#aaaaaa'}}>CIBO</h3>
+                                    <h3 style={{color: '#aaaaaa', fontFamily: 'fantasy'}}>CIBO</h3>
                                 </NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink
                                     className={classnames({ active: this.state.activeTab === 'altro' })}
                                     onClick={() => { this.selectTab('altro'); }} >
-                                    <h3 style={{color: '#aaaaaa'}}>ALTRO</h3>
+                                    <h3 style={{color: '#aaaaaa', fontFamily: 'fantasy'}}>ALTRO</h3>
                                 </NavLink>
                             </NavItem>
                         </Nav>
