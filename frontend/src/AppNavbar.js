@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Navbar, NavbarBrand} from 'reactstrap';
-import {Link} from 'react-router-dom';
+import {Navbar} from 'reactstrap';
+import logo from './header-logo.png'
 
 export default class AppNavbar extends Component {
     constructor(props) {
@@ -16,8 +16,8 @@ export default class AppNavbar extends Component {
     }
 
     render() {
-        return <Navbar color="dark" dark expand="md">
-            <div style={{minHeight: "33px", overflow: "hidden"}}></div>
-        </Navbar>;
+        return <div color="dark">
+            <div className="header"><img src={logo} alt="" width={50} className="img"/></div>
+        </div>;
     }
 }

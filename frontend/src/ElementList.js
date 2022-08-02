@@ -123,6 +123,7 @@ class ElementList extends Component {
                 <AppNavbar/>
                 <Container fluid>
                     <div>
+                        <br />
                         <Nav tabs>
                             <NavItem>
                                 <NavLink

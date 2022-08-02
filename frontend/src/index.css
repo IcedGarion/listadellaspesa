@@ -37,12 +37,28 @@ td{
 }
 
 .footer {
+  min-height: 33px;
   flex-shrink: 0;
   text-align: center;
-  background-color: #495057;
+  background-color: #31363a;
   color: black;
   position:absolute;
   left:0;
   bottom:0;
   right:0;
+}
+
+.header {
+  min-height: 60px;
+  overflow: hidden;
+  background-color: #31363a;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.img {
+  position: relative;
+  margin: auto;
+  top: 5px;
+  bottom: 5px;
 }
