@@ -35,3 +35,14 @@ td{
   margin: auto;
   flex: auto;
 }
+
+.footer {
+  flex-shrink: 0;
+  text-align: center;
+  background-color: #495057;
+  color: black;
+  position:absolute;
+  left:0;
+  bottom:0;
+  right:0;
+}
