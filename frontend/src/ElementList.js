@@ -158,8 +158,9 @@ class ElementList extends Component {
                         </tbody>
                     </Table>
                     <div className="float-right">
-                        <Button color="primary" onClick={() => this.addNew()}>+</Button>
+                        <Button style={{color: '#0dcaf0'}}  onClick={() => this.addNew()}>+</Button>
                     </div>
+                    <br />
                 </Container>
             </div>
         );
