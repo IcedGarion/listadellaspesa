@@ -119,7 +119,7 @@ class ElementList extends Component {
         });
 
         return (
-            <div style={{backgroundColor: '#111111'}}>
+            <div className='content'>
                 <AppNavbar/>
                 <Container fluid>
                     <div>

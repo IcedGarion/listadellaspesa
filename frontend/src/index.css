@@ -32,6 +32,11 @@ thead {
   font-family: fantasy;
 }
 
+.content {
+  background-color: #111111;
+  min-height: calc(100vh - 33px);
+}
+
 .disponibile-button-container{
   display: flex;
 }
@@ -44,15 +49,8 @@ thead {
 }
 
 .footer {
-  min-height: 33px;
-  flex-shrink: 0;
-  text-align: center;
+  height: 33px;
   background-color: #31363a;
-  color: black;
-  position:absolute;
-  left:0;
-  bottom:0;
-  right:0;
 }
 
 .header {
