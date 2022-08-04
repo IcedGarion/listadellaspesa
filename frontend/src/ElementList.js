@@ -127,7 +127,7 @@ class ElementList extends Component {
                 }
             } )
             .map(element => {
-            return <tr key={element.id} onMouseDown={ e => this.beginTouch(e)} onMouseUp={ e => this.endTouch(e) }>
+            return <tr key={element.id} onTouchStart={ e => this.beginTouch(e)} onTouchEnd={ e => this.endTouch(e) }>
                 <td hidden={!this.state.toggleDelete}><Button size="sm" color="dark" style={{textAlign:"center",display:"block",margin:"auto", flex:"auto"}} onClick={() => this.remove(element.id)}>-</Button></td>
                 <td><div contentEditable="true" onBlur={ e => this.editText(element.id, "nome", e.currentTarget.textContent) }>{element.nome}</div></td>
                 <td><div contentEditable="true" onBlur={ e => this.editText(element.id, "dove", e.currentTarget.textContent) }>{element.dove}</div></td>
@@ -139,7 +139,7 @@ class ElementList extends Component {
         });
 
         return (
-            <div className='content' onMouseUp={() => this.resetToggleDelete() } onTouchEnd={() => this.resetToggleDelete()}>
+            <div className='content' onTouchEnd={() => { if(this.state.toggleDelete) this.setState({toggleDelete: false})}}>
                 <AppNavbar/>
                 <Container fluid>
                     <div>
