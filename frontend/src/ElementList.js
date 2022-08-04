@@ -165,13 +165,13 @@ class ElementList extends Component {
                     <Table dark striped bordered responsive size="sm">
                         <thead>
                         <tr>
-                            <th hidden={!this.state.toggleDelete} width={this.state.toggleDelete ? this.state.activeTab === 'cibo' ? "9%" : "8%" : "0%"}></th>
-                            <th width={this.state.activeTab === 'cibo' ? "29%" : "25%"}><h5>Nome</h5></th>
-                            <th width={this.state.activeTab === 'cibo' ? "24%" : "20%"}><h5>Dove</h5></th>
-                            <th hidden={this.state.activeTab === 'cibo'} width={this.state.activeTab === 'cibo' ? "0%" : "14%"} ><h5>Tipo</h5></th>
-                            <th width={this.state.activeTab === 'cibo' ? "24%" : "21%"}><h5>Note</h5></th>
-                            <th width={this.state.activeTab === 'cibo' ? isMobile ? "23%" : "14%" : "12%"}><h5>Manca</h5></th>
-                            <th hidden={isMobile} width={isMobile ? "0%" : this.state.activeTab === 'cibo' ? "9%" : "8%"}></th>
+                            <th hidden={!this.state.toggleDelete} width="9%"></th>
+                            <th width="29%"><h5>Nome</h5></th>
+                            <th width="24%"><h5>Dove</h5></th>
+                            <th hidden={this.state.activeTab === 'cibo'} width="14%"><h5>Tipo</h5></th>
+                            <th width="24%"><h5>Note</h5></th>
+                            <th width="14%"><h5></h5></th>
+                            <th hidden={isMobile} width="9%"></th>
                         </tr>
                         </thead>
                         <tbody>
