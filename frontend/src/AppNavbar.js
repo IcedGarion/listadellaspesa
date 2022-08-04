@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Navbar} from 'reactstrap';
 import logo from './header-logo.png'
 
 export default class AppNavbar extends Component {
