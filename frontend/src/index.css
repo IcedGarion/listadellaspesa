@@ -25,6 +25,7 @@ table{
 td{
   word-wrap:break-word;
   vertical-align: middle;
+  height: 40px;
 }
 
 thead {

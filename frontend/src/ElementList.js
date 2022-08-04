@@ -9,7 +9,7 @@ class ElementList extends Component {
     constructor(props) {
         super(props);
         // questo state in teoria andrebbe preso dalla tabella categorie
-        this.state = {lista: [], activeTab: 'cibo', touchX: 0, toggleDelete: false};
+        this.state = {lista: [], activeTab: 'cibo', touchX: 0, touchNewX: 0, toggleDelete: false};
         this.remove = this.remove.bind(this);
     }
 
@@ -86,12 +86,17 @@ class ElementList extends Component {
     }
 
     beginTouch(event) {
-        this.setState({touchX: event.clientX})
+        this.setState({touchX: event.targetTouches[0].clientX});
+    }
+
+    moveTouch(event) {
+        this.setState({touchNewX: event.targetTouches[0].clientX});
     }
 
     endTouch(event) {
-        if(Math.abs(this.state.touchX - event.clientX) > 75) {
+        if(this.state.touchNewX - this.state.touchX > 75) {
             this.setState({touchX: 0});
+            this.setState({touchNewX: 0});
             this.setState({toggleDelete: true});
         }
     }
@@ -127,8 +132,8 @@ class ElementList extends Component {
                 }
             } )
             .map(element => {
-            return <tr key={element.id} onTouchStart={ e => this.beginTouch(e)} onTouchEnd={ e => this.endTouch(e) }>
-                <td hidden={!this.state.toggleDelete}><Button size="sm" color="dark" style={{textAlign:"center",display:"block",margin:"auto", flex:"auto"}} onClick={() => this.remove(element.id)}>-</Button></td>
+            return <tr key={element.id} onTouchStart={ e => this.beginTouch(e)} onTouchMove={ e => this.moveTouch(e) } onTouchEnd={ e => this.endTouch(e) }>
+                <td hidden={!this.state.toggleDelete}><Button size="sm" color="dark" style={{textAlign:"center",display:"block",margin:"auto", flex:"auto", color:'#dc3545'}} onClick={() => this.remove(element.id)}>-</Button></td>
                 <td><div contentEditable="true" onBlur={ e => this.editText(element.id, "nome", e.currentTarget.textContent) }>{element.nome}</div></td>
                 <td><div contentEditable="true" onBlur={ e => this.editText(element.id, "dove", e.currentTarget.textContent) }>{element.dove}</div></td>
                 <td hidden={this.state.activeTab === 'cibo'} ><div contentEditable="true" onBlur={ e => this.editText(element.id, "categoria", e.currentTarget.textContent) }>{element.categoria}</div></td>
